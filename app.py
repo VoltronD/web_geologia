@@ -112,7 +112,7 @@ elif menu == "Galería de Campo":
 # --- PÁGINA 4: FORO ---
 elif menu == "Foro de Discusión":
     st.title("Foro y Comentarios")
-    st.write("Deja tu reporte de campo o comenta sobre la página. (Los comentarios se guardan en la memoria temporal de tu sesión).")
+    st.write("Comenta sobre la página. (Los comentarios se guardan en la memoria temporal de tu sesión).")
     
     # Cajón de entrada para el usuario
     with st.container():

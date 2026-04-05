@@ -34,16 +34,15 @@ with st.sidebar:
 # --- PÁGINA 1: INICIO ---
 if menu == "Inicio":
     st.title("Bienvenido al Portal de Geofísicca de la Universidad de El Salvador")
-    st.write("Plataforma creada por estudiantes quienes desean publicar sus conocimientos.")
+    st.write("Plataforma creada por estudiantes, quienes desean compartir sus conocimientos al mundo.")
     
     # Columnas para organizar la información
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Objetivos del Proyecto")
         st.write("""
-        *  **Georreferenciación:** Análisis de coordenadas UTM y geográficas.
-        *  **Topografía:** Cálculo rápido de pendientes y perfiles.
-        *  **Base de datos:** Recopilación de datos en tiempo real.
+        *  **Topografía:** Cálculo de variables útiles para un geofísico o geólogo.
+        *  **Base de datos:** Recopilación de datos en campo.
         """)
     with col2:
         st.info("**Dato curioso:** ¿Sabías que El Salvador está en el Cinturón de Fuego del Pacífico? La actividad volcánica y tectónica hace " \
@@ -77,20 +76,38 @@ elif menu == "Calculadora Topográfica":
 
 # --- PÁGINA 3: GALERÍA ---
 elif menu == "Galería de Campo":
-    st.title("Galería de Mapas y Terreno")
+    st.title("Galería de distintos tipos de rocas")
     st.write("Visualización de ejemplos de campo.")
     
     # Pestañas para dividir el contenido
     tab1, tab2, tab3 = st.tabs(["R. Igneas", "R. Sedimentarias", "R. Metamórficas"])
     
     with tab1:
-        st.image("https://images.unsplash.com/photo-1542317148-8b4bdccb33ea?q=80&w=1000&auto=format&fit=crop", caption="Paisaje Volcánico")
-        
-    with tab2:
-        st.image("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop", caption="Análisis Cartográfico en Mesa")
-        
-    with tab3:
-        st.image("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop", caption="Análisis Cartográfico en Mesa")
+            st.write("Galería de rocas ígneas de El Salvador.")
+            
+            # Creamos 3 columnas (puedes cambiar el número a 2, 4, etc.)
+            col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
+            
+            with col1:
+                st.image("Imagenes/Rocas/1.png", caption="Gabro")
+                
+            with col2:
+                st.image("Imagenes/Rocas/2.png", caption="Andesita")
+                
+            with col3:
+                st.image("Imagenes/Rocas/3.png", caption="Granito")
+
+            with col4:
+                st.image("Imagenes/Rocas/4.png", caption="Diorita")
+
+            with col5:
+                st.image("Imagenes/Rocas/5.png", caption="Pumita")
+
+            with col6:
+                st.image("Imagenes/Rocas/6.png", caption="Riolita")
+
+            with col7:
+                st.image("Imagenes/Rocas/7.png", caption="Ignimbrita")
 
 # --- PÁGINA 4: FORO ---
 elif menu == "Foro de Discusión":

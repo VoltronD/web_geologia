@@ -33,7 +33,7 @@ with st.sidebar:
 
 # --- PÁGINA 1: INICIO ---
 if menu == "Inicio":
-    st.title("Bienvenido al Portal de Geofísicca de la Universidad de El Salvador")
+    st.title("Bienvenido al Portal de Geofísica de la Universidad de El Salvador")
     st.write("Plataforma creada por estudiantes, quienes desean compartir sus conocimientos al mundo.")
     
     # Columnas para organizar la información

@@ -4,8 +4,7 @@ from datetime import datetime
 
 # 1. CONFIGURACIÓN DE LA PÁGINA (Debe ser la primera línea de Streamlit)
 st.set_page_config(
-    page_title="Portal de Geofísica",
-    page_icon="🌍",
+    page_title="Geofísica Unida",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -17,13 +16,13 @@ if "comentarios" not in st.session_state:
 # 3. BARRA LATERAL (MENÚ DE NAVEGACIÓN)
 with st.sidebar:
     # Usamos una imagen genérica de geología de internet
-    st.image("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=500&auto=format&fit=crop", caption="Portal CIMAT")
+    st.image("Imagenes/Logos/CIMAT.jpg", caption="CIMAT")
     st.title("📌 Menú Principal")
     
     # El radio button funciona como nuestro selector de páginas
     menu = st.radio(
         "Navega por las secciones:",
-        ["🏠 Inicio", "🧭 Calculadora Topográfica", "📸 Galería de Campo", "💬 Foro de Discusión"]
+        ["Inicio", "Calculadora Topográfica", "Galería de Campo", "Foro de Discusión"]
     )
     
     st.divider()
@@ -34,7 +33,7 @@ with st.sidebar:
 # ==========================================
 
 # --- PÁGINA 1: INICIO ---
-if menu == "🏠 Inicio":
+if menu == "Inicio":
     st.title("🌍 Bienvenido al Portal de Geofísica y Topografía")
     st.write("Esta es una plataforma interactiva creada para el análisis espacial y registro de datos en campo.")
     
@@ -43,19 +42,19 @@ if menu == "🏠 Inicio":
     with col1:
         st.subheader("Objetivos del Proyecto")
         st.write("""
-        * 📍 **Georreferenciación:** Análisis de coordenadas UTM y geográficas.
-        * ⛰️ **Topografía:** Cálculo rápido de pendientes y perfiles.
-        * 📊 **Base de datos:** Recopilación de datos en tiempo real.
+        *  **Georreferenciación:** Análisis de coordenadas UTM y geográficas.
+        *  **Topografía:** Cálculo rápido de pendientes y perfiles.
+        *  **Base de datos:** Recopilación de datos en tiempo real.
         """)
     with col2:
-        st.info("💡 **Dato curioso:** ¿Sabías que El Salvador está en el Cinturón de Fuego del Pacífico? La actividad volcánica y tectónica hace que la geofísica sea una disciplina vital para el país.")
+        st.info("**Dato curioso:** ¿Sabías que El Salvador está en el Cinturón de Fuego del Pacífico? La actividad volcánica y tectónica hace que la geofísica sea una disciplina vital para el país.")
         
     st.divider()
     st.metric(label="Visitas estimadas hoy", value="142", delta="+12 desde ayer")
 
 # --- PÁGINA 2: TOPOGRAFÍA ---
-elif menu == "🧭 Calculadora Topográfica":
-    st.title("🧭 Herramientas Topográficas")
+elif menu == "Calculadora Topográfica":
+    st.title("Herramientas Topográficas")
     st.write("Calcula la pendiente entre dos puntos de un mapa físico (ej. escala 1:25,000).")
     
     # Fórmula en LaTeX para que se vea profesional
@@ -70,18 +69,18 @@ elif menu == "🧭 Calculadora Topográfica":
         with colB:
             distancia = st.number_input("Distancia Horizontal en el terreno (metros)", min_value=1.0, value=500.0)
             
-        calcular = st.form_submit_button("🧮 Calcular Pendiente")
+        calcular = st.form_submit_button(" Calcular Pendiente")
         
     if calcular:
         desnivel = cota_mayor - cota_menor
         pendiente = (desnivel / distancia) * 100
         
-        st.success(f"✅ El desnivel es de **{desnivel} metros**.")
-        st.warning(f"⛰️ La pendiente topográfica es del **{pendiente:.2f}%**.")
+        st.success(f" El desnivel es de **{desnivel} metros**.")
+        st.warning(f" La pendiente topográfica es del **{pendiente:.2f}%**.")
 
 # --- PÁGINA 3: GALERÍA ---
-elif menu == "📸 Galería de Campo":
-    st.title("📸 Galería de Mapas y Terreno")
+elif menu == " Galería de Campo":
+    st.title(" Galería de Mapas y Terreno")
     st.write("Visualización de ejemplos de campo.")
     
     # Pestañas para dividir el contenido
@@ -94,8 +93,8 @@ elif menu == "📸 Galería de Campo":
         st.image("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop", caption="Análisis Cartográfico en Mesa")
 
 # --- PÁGINA 4: FORO ---
-elif menu == "💬 Foro de Discusión":
-    st.title("💬 Foro y Comentarios")
+elif menu == " Foro de Discusión":
+    st.title(" Foro y Comentarios")
     st.write("Deja tu reporte de campo o comenta sobre la página. (Los comentarios se guardan en la memoria temporal de tu sesión).")
     
     # Cajón de entrada para el usuario
@@ -103,7 +102,7 @@ elif menu == "💬 Foro de Discusión":
         nombre = st.text_input("Tu Nombre / Código de Estudiante")
         mensaje = st.text_area("Escribe tu reporte o mensaje aquí...")
         
-        if st.button("Enviar Comentario 📤"):
+        if st.button("Enviar Comentario "):
             if nombre and mensaje:
                 # Guardamos la fecha y hora actual
                 hora_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -118,7 +117,7 @@ elif menu == "💬 Foro de Discusión":
                 st.error("Por favor, llena tu nombre y el mensaje.")
     
     st.divider()
-    st.subheader("Bandeja de Mensajes 👇")
+    st.subheader("Bandeja de Mensajes y Reportes")
     
     # Mostrar todos los comentarios guardados
     if len(st.session_state.comentarios) == 0:

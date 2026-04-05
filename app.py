@@ -34,8 +34,8 @@ with st.sidebar:
 
 # --- PÁGINA 1: INICIO ---
 if menu == "Inicio":
-    st.title("🌍 Bienvenido al Portal de Geofísica y Topografía")
-    st.write("Esta es una plataforma interactiva creada para el análisis espacial y registro de datos en campo.")
+    st.title("Bienvenido al Portal de Geofísicca de la Universidad de El Salvador")
+    st.write("Plataforma creada por estudiantes quienes desean publicar sus conocimientos.")
     
     # Columnas para organizar la información
     col1, col2 = st.columns(2)
@@ -47,10 +47,8 @@ if menu == "Inicio":
         *  **Base de datos:** Recopilación de datos en tiempo real.
         """)
     with col2:
-        st.info("**Dato curioso:** ¿Sabías que El Salvador está en el Cinturón de Fuego del Pacífico? La actividad volcánica y tectónica hace que la geofísica sea una disciplina vital para el país.")
-        
-    st.divider()
-    st.metric(label="Visitas estimadas hoy", value="142", delta="+12 desde ayer")
+        st.info("**Dato curioso:** ¿Sabías que El Salvador está en el Cinturón de Fuego del Pacífico? La actividad volcánica y tectónica hace " \
+        "que la geofísica sea una disciplina vital para el país.")
 
 # --- PÁGINA 2: TOPOGRAFÍA ---
 elif menu == "Calculadora Topográfica":
@@ -69,7 +67,7 @@ elif menu == "Calculadora Topográfica":
         with colB:
             distancia = st.number_input("Distancia Horizontal en el terreno (metros)", min_value=1.0, value=500.0)
             
-        calcular = st.form_submit_button(" Calcular Pendiente")
+        calcular = st.form_submit_button("Calcular Pendiente")
         
     if calcular:
         desnivel = cota_mayor - cota_menor
@@ -79,22 +77,25 @@ elif menu == "Calculadora Topográfica":
         st.warning(f" La pendiente topográfica es del **{pendiente:.2f}%**.")
 
 # --- PÁGINA 3: GALERÍA ---
-elif menu == " Galería de Campo":
-    st.title(" Galería de Mapas y Terreno")
+elif menu == "Galería de Campo":
+    st.title("Galería de Mapas y Terreno")
     st.write("Visualización de ejemplos de campo.")
     
     # Pestañas para dividir el contenido
-    tab1, tab2 = st.tabs(["Volcanes", "Cartografía"])
+    tab1, tab2, tab3 = st.tabs(["R. Igneas", "R. Sedimentarias", "R. Metamórficas"])
     
     with tab1:
         st.image("https://images.unsplash.com/photo-1542317148-8b4bdccb33ea?q=80&w=1000&auto=format&fit=crop", caption="Paisaje Volcánico")
         
     with tab2:
         st.image("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop", caption="Análisis Cartográfico en Mesa")
+        
+    with tab3:
+        st.image("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop", caption="Análisis Cartográfico en Mesa")
 
 # --- PÁGINA 4: FORO ---
-elif menu == " Foro de Discusión":
-    st.title(" Foro y Comentarios")
+elif menu == "Foro de Discusión":
+    st.title("Foro y Comentarios")
     st.write("Deja tu reporte de campo o comenta sobre la página. (Los comentarios se guardan en la memoria temporal de tu sesión).")
     
     # Cajón de entrada para el usuario
@@ -102,7 +103,7 @@ elif menu == " Foro de Discusión":
         nombre = st.text_input("Tu Nombre / Código de Estudiante")
         mensaje = st.text_area("Escribe tu reporte o mensaje aquí...")
         
-        if st.button("Enviar Comentario "):
+        if st.button("Enviar Comentario"):
             if nombre and mensaje:
                 # Guardamos la fecha y hora actual
                 hora_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

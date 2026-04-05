@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.title("⚒️ Mi Herramienta de Geología")
+st.title("Q peo pa")
 
 # Entrada de datos técnica
 st.subheader("Registro de Muestras")

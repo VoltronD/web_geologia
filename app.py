@@ -77,7 +77,7 @@ elif menu == "Calculadora Topográfica":
 # --- PÁGINA 3: GALERÍA ---
 elif menu == "Galería de Campo":
     st.title("Galería de distintos tipos de rocas")
-    st.write("Visualización de ejemplos de campo.")
+    st.write("Visualización de rocas.")
     
     # Pestañas para dividir el contenido
     tab1, tab2, tab3 = st.tabs(["R. Igneas", "R. Sedimentarias", "R. Metamórficas"])

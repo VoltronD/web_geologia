@@ -4,6 +4,8 @@ from datetime import datetime
 import base64
 from streamlit_pdf_viewer import pdf_viewer
 
+
+
 # 1. CONFIGURACIÓN DE LA PÁGINA (Debe ser la primera línea de Streamlit)
 st.set_page_config(
     page_title="Geofísica Unida",
@@ -11,11 +13,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# 2. SISTEMA DE MEMORIA (Session State para guardar los comentarios)
-if "comentarios" not in st.session_state:
-    st.session_state.comentarios = []
 
-# 3. BARRA LATERAL (MENÚ DE NAVEGACIÓN)
+
+# 2. BARRA LATERAL (MENÚ DE NAVEGACIÓN)
 with st.sidebar:
     st.image("Imagenes/Logos/CIMAT.jpg", caption="CIMAT")
     st.title("Menú Principal")
@@ -23,32 +23,20 @@ with st.sidebar:
     # El radio button funciona como nuestro selector de páginas
     menu = st.radio(
         "Navega por las secciones:",
-        ["Inicio", "Calculadora Topográfica", "Galería de Campo", "Foro de Discusión", "Biblioteca Digital"]
+        ["Inicio", "Calculadora Topográfica", "Galería de Campo", "Biblioteca Digital"]
     )
     
     st.divider()
     st.info("Desarrollado 100% con Python 🐍")
 
-# ==========================================
-# 4. LÓGICA DE LAS PÁGINAS (Según lo elegido en el menú)
-# ==========================================
+
 
 # --- PÁGINA 1: INICIO ---
 if menu == "Inicio":
     st.title("Bienvenido al Portal de Geofísica de la Universidad de El Salvador")
     st.write("Plataforma creada por estudiantes, quienes desean compartir sus conocimientos al mundo.")
-    
-    # Columnas para organizar la información
-    col1, col2 = st.columns(2)
-    with col1:
-        st.subheader("Objetivos del Proyecto")
-        st.write("""
-        *  **Topografía:** Cálculo de variables útiles para un geofísico o geólogo.
-        *  **Base de datos:** Recopilación de datos en campo.
-        """)
-    with col2:
-        st.info("**Dato curioso:** ¿Sabías que El Salvador está en el Cinturón de Fuego del Pacífico? La actividad volcánica y tectónica hace " \
-        "que la geofísica sea una disciplina vital para el país.")
+
+
 
 # --- PÁGINA 2: TOPOGRAFÍA ---
 elif menu == "Calculadora Topográfica":
@@ -75,6 +63,8 @@ elif menu == "Calculadora Topográfica":
         
         st.success(f" El desnivel es de **{desnivel} metros**.")
         st.warning(f" La pendiente topográfica es del **{pendiente:.2f}%**.")
+
+
 
 # --- PÁGINA 3: GALERÍA ---
 elif menu == "Galería de Campo":
@@ -111,6 +101,8 @@ elif menu == "Galería de Campo":
             with col7:
                 st.image("Imagenes/Rocas/7.png", caption="Ignimbrita")
 
+
+
 # --- PÁGINA 4: BIBLIOTECA DIGITAL ---
 elif menu == "Biblioteca Digital":
     st.title("Biblioteca Digital")
@@ -129,45 +121,10 @@ elif menu == "Biblioteca Digital":
 
     st.divider()
 
+
+
 # --- LEER EN LÍNEA (NUEVO VISOR PRO) ---
-    st.subheader("Leer en línea")
+    #st.subheader("Leer en línea")
     
     # Esta función hace todo el trabajo pesado automáticamente
-    pdf_viewer("Libros/Tarbuck._ciencias_de_la_tierra.pdf")
-
-# --- PÁGINA 5: FORO ---
-elif menu == "Foro de Discusión":
-    st.title("Foro y Comentarios")
-    st.write("Comenta sobre la página. (Los comentarios se guardan en la memoria temporal de tu sesión).")
-    
-    # Cajón de entrada para el usuario
-    with st.container():
-        nombre = st.text_input("Tu Nombre / Código de Estudiante")
-        mensaje = st.text_area("Escribe tu reporte o mensaje aquí...")
-        
-        if st.button("Enviar Comentario"):
-            if nombre and mensaje:
-                # Guardamos la fecha y hora actual
-                hora_actual = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                # Agregamos el comentario a la lista en la "memoria"
-                st.session_state.comentarios.append({
-                    "nombre": nombre,
-                    "mensaje": mensaje,
-                    "fecha": hora_actual
-                })
-                st.success("¡Comentario publicado!")
-            else:
-                st.error("Por favor, llena tu nombre y el mensaje.")
-    
-    st.divider()
-    st.subheader("Bandeja de Mensajes y Reportes")
-    
-    # Mostrar todos los comentarios guardados
-    if len(st.session_state.comentarios) == 0:
-        st.info("Aún no hay comentarios. ¡Sé el primero en escribir!")
-    else:
-        # Invertimos la lista para que el más nuevo salga arriba
-        for c in reversed(st.session_state.comentarios):
-            with st.chat_message("user"):
-                st.markdown(f"**{c['nombre']}** - *{c['fecha']}*")
-                st.write(c['mensaje'])
+    #pdf_viewer("Libros/Tarbuck._ciencias_de_la_tierra.pdf")

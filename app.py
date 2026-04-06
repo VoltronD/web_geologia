@@ -133,7 +133,7 @@ elif menu == "Biblioteca Digital":
     st.subheader("Leer en línea")
 
 # --- LEER EN LÍNEA (NUEVO VISOR PRO) ---
-    st.subheader("📖 Leer en línea")
+    st.subheader("Leer en línea")
     
     # Esta función hace todo el trabajo pesado automáticamente
     pdf_viewer("Libros/Tarbuck._ciencias_de_la_tierra.pdf")

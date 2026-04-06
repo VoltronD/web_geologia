@@ -17,7 +17,7 @@ if "comentarios" not in st.session_state:
 
 # 3. BARRA LATERAL (MENÚ DE NAVEGACIÓN)
 with st.sidebar:
-    st.image(width=400, image="Imagenes/Logos/CIMAT.jpg", caption="CIMAT")
+    st.image("Imagenes/Logos/CIMAT.jpg", caption="CIMAT")
     st.title("Menú Principal")
     
     # El radio button funciona como nuestro selector de páginas

@@ -44,7 +44,7 @@ if menu == "Inicio":
 # --- PÁGINA 2: TOPOGRAFÍA ---
 elif menu == "Calculadora":
     st.title("Herramientas Topográficas")
-    st.write("Calcula la pendiente entre dos puntos de un mapa físico (ej. escala 1:25,000).")
+    st.write("Calculos relacionados con la topografía y la geodesia.")
     
     tab1, tab2 = st.tabs(["Calculadora de Pendiente", "Conversor de Coordenadas"])
 
@@ -61,7 +61,7 @@ elif menu == "Calculadora":
             with colB:
                 distancia = st.number_input("Distancia Horizontal en el terreno (metros)", min_value=1.0, value=500.0)
             
-        calcular = st.form_submit_button("Calcular Pendiente")
+            calcular = st.form_submit_button("Calcular Pendiente")
         
         if calcular:
             desnivel = cota_mayor - cota_menor

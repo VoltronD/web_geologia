@@ -129,9 +129,6 @@ elif menu == "Biblioteca Digital":
 
     st.divider()
 
-    # --- LEER EN LÍNEA (VISOR INTEGRADO MEJORADO) ---
-    st.subheader("Leer en línea")
-
 # --- LEER EN LÍNEA (NUEVO VISOR PRO) ---
     st.subheader("Leer en línea")
     

@@ -120,13 +120,3 @@ elif menu == "Biblioteca Digital":
     )
 
     st.divider()
-
-
-
-st.subheader("⛰️ Perfil de Elevación del Terreno")
-
-# Imagina que estas son las cotas (alturas) a lo largo de un camino
-elevaciones = [850, 855, 860, 865, 880, 875, 870, 865]
-
-# Esto dibuja la gráfica automáticamente
-st.line_chart(elevaciones)

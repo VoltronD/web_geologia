@@ -22,7 +22,7 @@ with st.sidebar:
     # El radio button funciona como nuestro selector de páginas
     menu = st.radio(
         "Navega por las secciones:",
-        ["Inicio", "Calculadora Topográfica", "Galería de Campo", "Foro de Discusión"]
+        ["Inicio", "Calculadora Topográfica", "Galería de Campo", "Foro de Discusión", "Biblioteca Digital"]
     )
     
     st.divider()
@@ -110,6 +110,38 @@ elif menu == "Galería de Campo":
             with col7:
                 st.image("Imagenes/Rocas/7.png", caption="Ignimbrita")
 
+# --- PÁGINA 4: BIBLIOTECA DIGITAL ---
+elif menu == "Biblioteca Digital":
+    st.title("Biblioteca Digital")
+    st.write("Consulta y descarga nuestros libros rescatados.")
+
+# --- BOTÓN DE DESCARGA ---
+    with open("Libros/Tarbuck._ciencias_de_la_tierra.pdf", "rb") as pdf_file:
+        PDFbyte = pdf_file.read()
+
+    st.download_button(
+        label="Descargar Ciencias de la Tierra - Tarbuck",
+        data=PDFbyte,
+        file_name="Tarbuck_Ciencias_de_la_Tierra.pdf",
+        mime="application/pdf"
+    )
+
+    st.divider()
+
+    # --- LEER EN LÍNEA (VISOR INTEGRADO MEJORADO) ---
+    st.subheader("Leer en línea")
+
+    def mostrar_pdf(ruta_archivo):
+        import base64
+        with open(ruta_archivo, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        
+        # Cambiamos 'iframe' por 'embed' para evitar el bloqueo del navegador
+        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf">'
+        st.markdown(pdf_display, unsafe_allow_html=True)
+
+    mostrar_pdf("Libros/Tarbuck._ciencias_de_la_tierra.pdf")
+
 # --- PÁGINA 4: FORO ---
 elif menu == "Foro de Discusión":
     st.title("Foro y Comentarios")
@@ -146,35 +178,3 @@ elif menu == "Foro de Discusión":
             with st.chat_message("user"):
                 st.markdown(f"**{c['nombre']}** - *{c['fecha']}*")
                 st.write(c['mensaje'])
-
-st.title("Biblioteca Digital")
-st.write("Consulta y descarga nuestros libros rescatados.")
-
-# --- OPCIÓN 1: BOTÓN DE DESCARGA ---
-# Abrimos el PDF de forma segura para que Streamlit lo lea
-with open("Libros/Tarbuck._ciencias_de_la_tierra.pdf", "rb") as pdf_file:
-    PDFbyte = pdf_file.read()
-
-st.download_button(
-    label="Descargar Ciencias de la Tierra - Tarbuck",
-    data=PDFbyte,
-    file_name="Tarbuck._ciencias_de_la_tierra.pdf",
-    mime="application/pdf"
-)
-
-st.divider()
-
-# --- OPCIÓN 2: LEER EN LÍNEA (VISOR INTEGRADO) ---
-st.subheader("Leer en línea")
-
-# Esta función "traduce" el PDF a un código que el navegador puede mostrar
-def mostrar_pdf(ruta_archivo):
-    with open(ruta_archivo, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-    
-    # Creamos un marco (iframe) para incrustar el PDF
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf"></iframe>'
-    st.markdown(pdf_display, unsafe_allow_html=True)
-
-# Llamamos a la función con el nombre exacto de tu archivo
-mostrar_pdf("Libros/Tarbuck._ciencias_de_la_tierra.pdf")

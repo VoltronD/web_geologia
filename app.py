@@ -71,8 +71,9 @@ elif menu == "Calculadora":
             
             st.success(f" El desnivel es de **{desnivel} metros**.")
             st.warning(f" La pendiente topográfica es del **{pendiente:.2f}%**.")
+
     with tab2:
-        st.write("Conversor de coordenadas geográficas a UTM y viceversa.")
+        
         st.write("Convierte coordenadas entre el sistema Geográfico (WGS84) y UTM.")
 
         # Creamos dos pestañas para las dos opciones de conversión

@@ -3,6 +3,7 @@ import pandas as pd
 from datetime import datetime
 import base64
 from streamlit_pdf_viewer import pdf_viewer
+import time
 
 
 
@@ -119,22 +120,16 @@ elif menu == "Biblioteca Digital":
         mime="application/pdf"
     )
 
-    st.divider()
 
 
+st.subheader("Procesamiento de Redes de Drenaje")
 
-
-import streamlit as st
-import pandas as pd # Necesario para agrupar los datos
-
-st.subheader("Ubicación de Estaciones de Muestreo")
-
-# Tienes que pasarle los datos en formato de latitud ('lat') y longitud ('lon')
-# NOTA: Deben ser coordenadas geográficas (decimales), no UTM directas.
-datos_gps = pd.DataFrame({
-    'lat': [13.7150, 13.7185, 13.7122], # Ejemplo
-    'lon': [-89.2030, -89.2015, -89.2055]
-})
-
-# ¡Una sola línea dibuja el mapa completo!
-st.map(datos_gps)
+if st.button("Generar Red Hidrográfica"):
+    # Todo lo que esté debajo del 'with' ocurrirá mientras gira la ruedita
+    with st.spinner('Analizando modelo de elevación digital... Por favor espera.'):
+        
+        time.sleep(3) # Aquí iría tu código matemático real. Esto solo pausa 3 segundos.
+        
+    # Cuando termina la pausa (o el cálculo), desaparece la ruedita y mostramos esto:
+    st.success("¡Red generada y clasificada exitosamente!")
+    st.toast("Datos guardados en la memoria.") # Esto lanza un mensajito flotante chiquito abajo a la derecha

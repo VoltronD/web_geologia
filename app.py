@@ -120,3 +120,21 @@ elif menu == "Biblioteca Digital":
     )
 
     st.divider()
+
+
+
+
+import streamlit as st
+import pandas as pd # Necesario para agrupar los datos
+
+st.subheader("Ubicación de Estaciones de Muestreo")
+
+# Tienes que pasarle los datos en formato de latitud ('lat') y longitud ('lon')
+# NOTA: Deben ser coordenadas geográficas (decimales), no UTM directas.
+datos_gps = pd.DataFrame({
+    'lat': [13.7150, 13.7185, 13.7122], # Ejemplo
+    'lon': [-89.2030, -89.2015, -89.2055]
+})
+
+# ¡Una sola línea dibuja el mapa completo!
+st.map(datos_gps)

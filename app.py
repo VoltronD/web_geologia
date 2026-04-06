@@ -24,7 +24,7 @@ with st.sidebar:
     # El radio button funciona como nuestro selector de páginas
     menu = st.radio(
         "Navega por las secciones:",
-        ["Inicio", "Calculadora Topográfica", "Galería de Campo", "Biblioteca Digital"]
+        ["Inicio", "Calculadora", "Galería", "Biblioteca"]
     )
     
     st.divider()
@@ -37,38 +37,43 @@ if menu == "Inicio":
     st.title("Bienvenido al Portal de Geofísica de la Universidad de El Salvador")
     st.write("Plataforma creada por estudiantes, quienes desean compartir sus conocimientos al mundo.")
 
+    st.divider()
+    st.write("A tu izquierda encontrarás el menú de navegación para explorar las distintas secciones de nuestro portal. ¡Disfruta tu visita!")
 
 
 # --- PÁGINA 2: TOPOGRAFÍA ---
-elif menu == "Calculadora Topográfica":
+elif menu == "Calculadora":
     st.title("Herramientas Topográficas")
     st.write("Calcula la pendiente entre dos puntos de un mapa físico (ej. escala 1:25,000).")
     
-    # Fórmula en LaTeX para que se vea profesional
-    st.latex(r"Pendiente (\%) = \left( \frac{\text{Cota Mayor} - \text{Cota Menor}}{\text{Distancia Horizontal}} \right) \times 100")
-    
-    # Formulario para la calculadora
-    with st.form("form_pendiente"):
-        colA, colB = st.columns(2)
-        with colA:
-            cota_mayor = st.number_input("Cota Mayor (msnm)", min_value=0.0, value=1200.0)
-            cota_menor = st.number_input("Cota Menor (msnm)", min_value=0.0, value=1050.0)
-        with colB:
-            distancia = st.number_input("Distancia Horizontal en el terreno (metros)", min_value=1.0, value=500.0)
+    tab1, tab2 = st.tabs(["Calculadora de Pendiente", "Conversor de Coordenadas"])
+
+    with tab1:
+        # Fórmula en LaTeX para que se vea profesional
+        st.latex(r"Pendiente (\%) = \left( \frac{\text{Cota Mayor} - \text{Cota Menor}}{\text{Distancia Horizontal}} \right) \times 100")
+        
+        # Formulario para la calculadora
+        with st.form("form_pendiente"):
+            colA, colB = st.columns(2)
+            with colA:
+                cota_mayor = st.number_input("Cota Mayor (msnm)", min_value=0.0, value=1200.0)
+                cota_menor = st.number_input("Cota Menor (msnm)", min_value=0.0, value=1050.0)
+            with colB:
+                distancia = st.number_input("Distancia Horizontal en el terreno (metros)", min_value=1.0, value=500.0)
             
         calcular = st.form_submit_button("Calcular Pendiente")
         
-    if calcular:
-        desnivel = cota_mayor - cota_menor
-        pendiente = (desnivel / distancia) * 100
-        
-        st.success(f" El desnivel es de **{desnivel} metros**.")
-        st.warning(f" La pendiente topográfica es del **{pendiente:.2f}%**.")
+        if calcular:
+            desnivel = cota_mayor - cota_menor
+            pendiente = (desnivel / distancia) * 100
+            
+            st.success(f" El desnivel es de **{desnivel} metros**.")
+            st.warning(f" La pendiente topográfica es del **{pendiente:.2f}%**.")
 
 
 
 # --- PÁGINA 3: GALERÍA ---
-elif menu == "Galería de Campo":
+elif menu == "Galería":
     st.title("Galería de distintos tipos de rocas")
     st.write("Visualización de rocas.")
     
@@ -122,14 +127,4 @@ elif menu == "Biblioteca Digital":
 
 
 
-st.subheader("Procesamiento de Redes de Drenaje")
 
-if st.button("Generar Red Hidrográfica"):
-    # Todo lo que esté debajo del 'with' ocurrirá mientras gira la ruedita
-    with st.spinner('Analizando modelo de elevación digital... Por favor espera.'):
-        
-        time.sleep(3) # Aquí iría tu código matemático real. Esto solo pausa 3 segundos.
-        
-    # Cuando termina la pausa (o el cálculo), desaparece la ruedita y mostramos esto:
-    st.success("¡Red generada y clasificada exitosamente!")
-    st.toast("Datos guardados en la memoria.") # Esto lanza un mensajito flotante chiquito abajo a la derecha

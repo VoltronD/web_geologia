@@ -123,8 +123,10 @@ elif menu == "Biblioteca Digital":
 
 
 
-# --- LEER EN LÍNEA (NUEVO VISOR PRO) ---
-    #st.subheader("Leer en línea")
-    
-    # Esta función hace todo el trabajo pesado automáticamente
-    #pdf_viewer("Libros/Tarbuck._ciencias_de_la_tierra.pdf")
+st.subheader("⛰️ Perfil de Elevación del Terreno")
+
+# Imagina que estas son las cotas (alturas) a lo largo de un camino
+elevaciones = [850, 855, 860, 865, 880, 875, 870, 865]
+
+# Esto dibuja la gráfica automáticamente
+st.line_chart(elevaciones)

@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+import base64
 
 # 1. CONFIGURACIÓN DE LA PÁGINA (Debe ser la primera línea de Streamlit)
 st.set_page_config(
@@ -145,3 +146,35 @@ elif menu == "Foro de Discusión":
             with st.chat_message("user"):
                 st.markdown(f"**{c['nombre']}** - *{c['fecha']}*")
                 st.write(c['mensaje'])
+
+st.title("Biblioteca Digital")
+st.write("Consulta y descarga nuestros libros rescatados.")
+
+# --- OPCIÓN 1: BOTÓN DE DESCARGA ---
+# Abrimos el PDF de forma segura para que Streamlit lo lea
+with open("Libros/Tarbuck._ciencias_de_la_tierra.pdf", "rb") as pdf_file:
+    PDFbyte = pdf_file.read()
+
+st.download_button(
+    label="Descargar Ciencias de la Tierra - Tarbuck",
+    data=PDFbyte,
+    file_name="Tarbuck._ciencias_de_la_tierra.pdf",
+    mime="application/pdf"
+)
+
+st.divider()
+
+# --- OPCIÓN 2: LEER EN LÍNEA (VISOR INTEGRADO) ---
+st.subheader("Leer en línea")
+
+# Esta función "traduce" el PDF a un código que el navegador puede mostrar
+def mostrar_pdf(ruta_archivo):
+    with open(ruta_archivo, "rb") as f:
+        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+    
+    # Creamos un marco (iframe) para incrustar el PDF
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf"></iframe>'
+    st.markdown(pdf_display, unsafe_allow_html=True)
+
+# Llamamos a la función con el nombre exacto de tu archivo
+mostrar_pdf("Libros/Tarbuck._ciencias_de_la_tierra.pdf")

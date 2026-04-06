@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 import base64
+from streamlit_pdf_viewer import pdf_viewer
 
 # 1. CONFIGURACIÓN DE LA PÁGINA (Debe ser la primera línea de Streamlit)
 st.set_page_config(
@@ -131,18 +132,13 @@ elif menu == "Biblioteca Digital":
     # --- LEER EN LÍNEA (VISOR INTEGRADO MEJORADO) ---
     st.subheader("Leer en línea")
 
-    def mostrar_pdf(ruta_archivo):
-        import base64
-        with open(ruta_archivo, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        
-        # Cambiamos 'iframe' por 'embed' para evitar el bloqueo del navegador
-        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="100%" height="800" type="application/pdf">'
-        st.markdown(pdf_display, unsafe_allow_html=True)
+# --- LEER EN LÍNEA (NUEVO VISOR PRO) ---
+    st.subheader("📖 Leer en línea")
+    
+    # Esta función hace todo el trabajo pesado automáticamente
+    pdf_viewer("Libros/Tarbuck._ciencias_de_la_tierra.pdf")
 
-    mostrar_pdf("Libros/Tarbuck._ciencias_de_la_tierra.pdf")
-
-# --- PÁGINA 4: FORO ---
+# --- PÁGINA 5: FORO ---
 elif menu == "Foro de Discusión":
     st.title("Foro y Comentarios")
     st.write("Comenta sobre la página. (Los comentarios se guardan en la memoria temporal de tu sesión).")
